@@ -516,9 +516,9 @@ class AllInOne {
         $arParameters = null;
 
         $szItemName = '';
-        $szAlipayItemName = '';
-        $szAlipayItemCounts = '';
-        $szAlipayItemPrice = '';
+        // $szAlipayItemName = '';
+        // $szAlipayItemCounts = '';
+        // $szAlipayItemPrice = '';
         $szInvoiceItemName = '';
         $szInvoiceItemCount = '';
         $szInvoiceItemWord = '';
@@ -586,33 +586,33 @@ class AllInOne {
             array_push($arErrors, 'Items is required.');
         }
         // 檢查 Alipay 條件。
-        if ($this->Send['ChoosePayment'] == PaymentMethod::Alipay) {
-            if (strlen($this->SendExtend['Email']) == 0) {
-                array_push($arErrors, "Email is required.");
-            }
-            if (strlen($this->SendExtend['Email']) > 200) {
-                array_push($arErrors, "Email max langth as 200.");
-            }
-            if (strlen($this->SendExtend['PhoneNo']) == 0) {
-                array_push($arErrors, "PhoneNo is required.");
-            }
-            if (strlen($this->SendExtend['PhoneNo']) > 20) {
-                array_push($arErrors, "PhoneNo max langth as 20.");
-            }
-            if (strlen($this->SendExtend['UserName']) == 0) {
-                array_push($arErrors, "UserName is required.");
-            }
-            if (strlen($this->SendExtend['UserName']) > 20) {
-                array_push($arErrors, "UserName max langth as 20.");
-            }
-        }
+        // if ($this->Send['ChoosePayment'] == PaymentMethod::Alipay) {
+            // if (strlen($this->SendExtend['Email']) == 0) {
+                // array_push($arErrors, "Email is required.");
+            // }
+            // if (strlen($this->SendExtend['Email']) > 200) {
+                // array_push($arErrors, "Email max langth as 200.");
+            // }
+            // if (strlen($this->SendExtend['PhoneNo']) == 0) {
+                // array_push($arErrors, "PhoneNo is required.");
+            // }
+            // if (strlen($this->SendExtend['PhoneNo']) > 20) {
+                // array_push($arErrors, "PhoneNo max langth as 20.");
+            // }
+            // if (strlen($this->SendExtend['UserName']) == 0) {
+                // array_push($arErrors, "UserName is required.");
+            // }
+            // if (strlen($this->SendExtend['UserName']) > 20) {
+                // array_push($arErrors, "UserName max langth as 20.");
+            // }
+        // }
         // 檢查產品名稱。
         if (sizeof($this->Send['Items']) > 0) {
             foreach ($this->Send['Items'] as $keys => $value) {
                 $szItemName .= vsprintf('#%s %d %s x %u', $this->Send['Items'][$keys]);
-                $szAlipayItemName .= sprintf('#%s', $this->Send['Items'][$keys]['Name']);
-                $szAlipayItemCounts .= sprintf('#%u', $this->Send['Items'][$keys]['Quantity']);
-                $szAlipayItemPrice .= sprintf('#%d', $this->Send['Items'][$keys]['Price']);
+                // $szAlipayItemName .= sprintf('#%s', $this->Send['Items'][$keys]['Name']);
+                // $szAlipayItemCounts .= sprintf('#%u', $this->Send['Items'][$keys]['Quantity']);
+                // $szAlipayItemPrice .= sprintf('#%d', $this->Send['Items'][$keys]['Price']);
 
                 if (!array_key_exists('ItemURL', $this->Send)) {
                     $this->Send['ItemURL'] = $this->Send['Items'][$keys]['URL'];
@@ -622,15 +622,15 @@ class AllInOne {
             if (strlen($szItemName) > 0) {
                 $szItemName = mb_substr($szItemName, 1, 200);
             }
-            if (strlen($szAlipayItemName) > 0) {
-                $szAlipayItemName = mb_substr($szAlipayItemName, 1, 200);
-            }
-            if (strlen($szAlipayItemCounts) > 0) {
-                $szAlipayItemCounts = mb_substr($szAlipayItemCounts, 1, 100);
-            }
-            if (strlen($szAlipayItemPrice) > 0) {
-                $szAlipayItemPrice = mb_substr($szAlipayItemPrice, 1, 20);
-            }
+            // if (strlen($szAlipayItemName) > 0) {
+                // $szAlipayItemName = mb_substr($szAlipayItemName, 1, 200);
+            // }
+            // if (strlen($szAlipayItemCounts) > 0) {
+                // $szAlipayItemCounts = mb_substr($szAlipayItemCounts, 1, 100);
+            // }
+            // if (strlen($szAlipayItemPrice) > 0) {
+                // $szAlipayItemPrice = mb_substr($szAlipayItemPrice, 1, 20);
+            // }
         } else {
             array_push($arErrors, "Goods information not found.");
         }
@@ -936,11 +936,11 @@ class AllInOne {
                 unset($arParameters['PeriodReturnURL']);
                 unset($arParameters['PeriodType']);
 
-                $arParameters = array_merge($arParameters, array(
-                    'AlipayItemName' => $szAlipayItemName,
-                    'AlipayItemCounts' => $szAlipayItemCounts,
-                    'AlipayItemPrice' => $szAlipayItemPrice
-                ));
+                // $arParameters = array_merge($arParameters, array(
+                    // 'AlipayItemName' => $szAlipayItemName,
+                    // 'AlipayItemCounts' => $szAlipayItemCounts,
+                    // 'AlipayItemPrice' => $szAlipayItemPrice
+                // ));
 
                 if (!$arParameters['CreditInstallment']) { unset($arParameters['CreditInstallment']); }
                 if (!$arParameters['InstallmentAmount']) { unset($arParameters['InstallmentAmount']); }
@@ -951,33 +951,33 @@ class AllInOne {
                 if (!$this->SendExtend['ClientRedirectURL']) { unset($arParameters['ClientRedirectURL']); }
             }
             // 整理 Alipay 參數。
-            if ($this->Send['ChoosePayment'] == PaymentMethod::Alipay) {
-                $arParameters = array_merge($arParameters, array(
-                    'AlipayItemName' => $szAlipayItemName,
-                    'AlipayItemCounts' => $szAlipayItemCounts,
-                    'AlipayItemPrice' => $szAlipayItemPrice
-                ));
+            // if ($this->Send['ChoosePayment'] == PaymentMethod::Alipay) {
+                // $arParameters = array_merge($arParameters, array(
+                    // 'AlipayItemName' => $szAlipayItemName,
+                    // 'AlipayItemCounts' => $szAlipayItemCounts,
+                    // 'AlipayItemPrice' => $szAlipayItemPrice
+                // ));
 
-                unset($arParameters['CreditInstallment']);
-                unset($arParameters['Desc_1']);
-                unset($arParameters['Desc_2']);
-                unset($arParameters['Desc_3']);
-                unset($arParameters['Desc_4']);
-                unset($arParameters['ExecTimes']);
-                unset($arParameters['ExpireDate']);
-                unset($arParameters['ExpireTime']);
-                unset($arParameters['Frequency']);
-                unset($arParameters['InstallmentAmount']);
-                unset($arParameters['PaymentInfoURL']);
-                unset($arParameters['PeriodAmount']);
-                unset($arParameters['PeriodReturnURL']);
-                unset($arParameters['PeriodType']);
-                unset($arParameters['Redeem']);
-                unset($arParameters['UnionPay']);
+                // unset($arParameters['CreditInstallment']);
+                // unset($arParameters['Desc_1']);
+                // unset($arParameters['Desc_2']);
+                // unset($arParameters['Desc_3']);
+                // unset($arParameters['Desc_4']);
+                // unset($arParameters['ExecTimes']);
+                // unset($arParameters['ExpireDate']);
+                // unset($arParameters['ExpireTime']);
+                // unset($arParameters['Frequency']);
+                // unset($arParameters['InstallmentAmount']);
+                // unset($arParameters['PaymentInfoURL']);
+                // unset($arParameters['PeriodAmount']);
+                // unset($arParameters['PeriodReturnURL']);
+                // unset($arParameters['PeriodType']);
+                // unset($arParameters['Redeem']);
+                // unset($arParameters['UnionPay']);
 
-                unset($arParameters['IgnorePayment']);
-                unset($arParameters['ClientRedirectURL']);
-            }
+                // unset($arParameters['IgnorePayment']);
+                // unset($arParameters['ClientRedirectURL']);
+            // }
             // 整理 Tenpay 參數。
             if ($this->Send['ChoosePayment'] == PaymentMethod::Tenpay) {
                 unset($arParameters['CreditInstallment']);
