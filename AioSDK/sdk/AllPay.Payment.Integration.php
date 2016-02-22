@@ -606,6 +606,17 @@ class AllInOne {
                 // array_push($arErrors, "UserName max langth as 20.");
             // }
         // }
+        // 停用 Alipay
+        if ($this->Send['ChoosePayment'] == PaymentMethod::Alipay) {
+            array_push($arErrors, "Alipay is not available.");
+        } else if ($this->Send['ChoosePayment'] == PaymentMethod::ALL) {
+            if (!$this->Send['IgnorePayment']) {
+                $this->Send['IgnorePayment'] = PaymentMethod::Alipay;
+            } else {
+                $this->Send['IgnorePayment'] .= '#' . PaymentMethod::Alipay;
+            }
+        }
+        
         // 檢查產品名稱。
         if (sizeof($this->Send['Items']) > 0) {
             foreach ($this->Send['Items'] as $keys => $value) {
