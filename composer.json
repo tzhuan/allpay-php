@@ -1,0 +1,13 @@
+{
+	"name": "tzhuan/allpay-aio-php",
+	"version": "1.0.16",
+	"require": {
+		"ext-mbstring": "*",
+		"ext-curl": "*"
+	},
+	"autoload": {
+		"classmap": [
+			"AioSDK/sdk/AllPay.Payment.Integration.php"
+		]
+	}
+}
